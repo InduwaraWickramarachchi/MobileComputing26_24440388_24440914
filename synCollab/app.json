@@ -2,6 +2,7 @@
   "expo": {
     "name": "synCollab",
     "slug": "synCollab",
+    "scheme": "syncollab",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,9 +22,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-sqlite",
-      "expo-sharing"
-    ]
+    "plugins": ["expo-sqlite", "expo-sharing", "expo-router", "expo-status-bar"]
   }
 }
