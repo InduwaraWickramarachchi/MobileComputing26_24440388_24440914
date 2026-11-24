@@ -23,7 +23,7 @@ export async function migrate(): Promise<void> {
                     created_by          TEXT NOT NULL,
                     client_updated_at   TEXT NOT NULL,
                     updated_at          TEXT,
-                    deleted             INTEGER NOT NULL DEFAULT 0,
+                    deleted             INTEGER NOT NULL DEFAULT 0
                 );
 
 
