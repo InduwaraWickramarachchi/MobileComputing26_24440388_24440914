@@ -6,7 +6,7 @@ export default function Login() {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Login</Text>
       <Link href="/signup" style={{ marginTop: 20 }}>
-        Don't have an account? Sign up
+        Don&apos;t have an account? Sign up
       </Link>
     </View>
   );
