@@ -1,7 +1,7 @@
 import { Stack } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { AuthProvider, useAuth } from '../src/auth/AuthProvider';
+import { AuthProvider, useAuthentication } from '../src/auth/AuthProvider';
 import { migrate } from '../src/db/migrate';
 
 export default function RootLayout() {
@@ -19,7 +19,7 @@ export default function RootLayout() {
 }
 
 function RootNavigator() {
-  const { session, loading } = useAuth();
+  const { session, loading } = useAuthentication();
   if (loading) return <Loading />;
 
   return (

@@ -1,7 +1,7 @@
 import { Redirect } from 'expo-router';
-import { useAuth } from '../src/auth/AuthProvider';
+import { useAuthentication } from '../src/auth/AuthProvider';
 
 export default function Index() {
-  const { session } = useAuth();
+  const { session } = useAuthentication();
   return <Redirect href={session ? '/tasks' : '/login'} />;
 }
