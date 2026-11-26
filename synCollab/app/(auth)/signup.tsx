@@ -5,6 +5,7 @@ import PrimaryTextInput from '../../src/components/PrimaryTextInput';
 import { useState } from 'react';
 import { signUp } from '../../src/auth/AuthProvider';
 import { useHeaderHeight } from 'expo-router/build/react-navigation/index.js';
+import { theme } from '../../src/constants/theme';
 
 export default function Signup() {
   const [name, setName] = useState('');
@@ -30,6 +31,8 @@ export default function Signup() {
       keyboardVerticalOffset={headerHeight}
     >
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+        <Text style={styles.title}>Let&apos;s Get Started</Text>
+        <Text style={styles.captionText}>Please fill the details to create account</Text>
         <PrimaryTextInput
           value={name}
           onChangeText={setName}
@@ -75,6 +78,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 16,
+  },
+  title: {
+    fontSize: theme.fonts.size.title,
+    color: theme.colors.text,
+    fontWeight: theme.fonts.weight.semibold,
+  },
+  captionText: {
+    fontSize: theme.fonts.size.caption,
+    color: theme.colors.text,
+    marginBottom: 20,
   },
   button: {
     backgroundColor: '#007AFF',

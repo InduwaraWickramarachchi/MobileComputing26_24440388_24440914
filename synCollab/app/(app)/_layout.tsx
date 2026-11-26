@@ -24,8 +24,8 @@ export default function AppLayout() {
         options={{
           title: 'Tasks',
           headerRight: () => (
-            <Pressable onPress={confirmSignOut} hitSlop={8}>
-              <Text style={{ color: '#FF3B30', fontSize: 16 }}>Sign out</Text>
+            <Pressable style={styles.button} onPress={confirmSignOut} hitSlop={8}>
+              <Text style={styles.buttonText}>Sign out</Text>
             </Pressable>
           ),
         }}
@@ -35,3 +35,16 @@ export default function AppLayout() {
     </Stack>
   );
 }
+
+const styles = {
+  button: {
+    backgroundColor: '#ff0000',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+};
