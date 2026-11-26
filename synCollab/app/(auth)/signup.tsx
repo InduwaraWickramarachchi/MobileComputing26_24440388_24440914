@@ -1,13 +1,98 @@
 import { Link } from 'expo-router';
-import { Text, View } from 'react-native';
+import { EnvelopeSimpleIcon, LockSimpleIcon, UserIcon } from 'phosphor-react-native';
+import { StyleSheet, Pressable, Text, Alert, KeyboardAvoidingView, ScrollView } from 'react-native';
+import PrimaryTextInput from '../../src/components/PrimaryTextInput';
+import { useState } from 'react';
+import { signUp } from '../../src/auth/AuthProvider';
+import { useHeaderHeight } from 'expo-router/build/react-navigation/index.js';
 
 export default function Signup() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const headerHeight = useHeaderHeight();
+
+  const handleSignup = async () => {
+    if (!email.trim() || !password || !name.trim()) {
+      Alert.alert('Sign Up Error', 'Please fill all fields.');
+      return;
+    }
+    setLoading(true);
+    const { error } = await signUp(name, email, password);
+    setLoading(false);
+    if (error) Alert.alert('Sign Up Error', error);
+  };
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Sign up</Text>
-      <Link href="/login" style={{ marginTop: 20 }}>
-        Already have an account? Log in
-      </Link>
-    </View>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior="padding"
+      keyboardVerticalOffset={headerHeight}
+    >
+      <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+        <PrimaryTextInput
+          value={name}
+          onChangeText={setName}
+          placeholder="Username"
+          keyboardType="default"
+          autoCapitalize="none"
+          leftIcon={UserIcon}
+        />
+        <PrimaryTextInput
+          value={email}
+          onChangeText={setEmail}
+          placeholder="Email"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          leftIcon={EnvelopeSimpleIcon}
+        />
+        <PrimaryTextInput
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Password"
+          keyboardType="default"
+          secureTextEntry={true}
+          leftIcon={LockSimpleIcon}
+        />
+        <Pressable
+          onPress={handleSignup}
+          disabled={loading}
+          style={({ pressed }) => [styles.pressable, pressed && { opacity: 0.6 }]}
+        >
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </Pressable>
+        <Link href="/login" style={styles.link}>
+          Already have an account? Log in
+        </Link>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+  },
+  button: {
+    backgroundColor: '#007AFF',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  pressable: {
+    padding: 10,
+    backgroundColor: '#007AFF',
+    borderRadius: 5,
+  },
+  link: {
+    marginTop: 10,
+    color: '#007AFF',
+  },
+});
