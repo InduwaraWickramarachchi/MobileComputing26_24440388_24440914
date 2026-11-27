@@ -22,7 +22,7 @@ export default function AppLayout() {
       <Stack.Screen
         name="tasks"
         options={{
-          title: 'Tasks',
+          title: 'SynCollab Tasks',
           headerRight: () => (
             <Pressable style={styles.button} onPress={confirmSignOut} hitSlop={8}>
               <Text style={styles.buttonText}>Sign out</Text>

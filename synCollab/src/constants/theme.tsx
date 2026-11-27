@@ -55,6 +55,7 @@ export const theme = {
     },
     taskStatus: {
       pending: '#90A4AE',
+      in_progress: '#FF9800',
       completed: '#2196F3',
     },
   },
